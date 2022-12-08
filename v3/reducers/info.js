@@ -16,7 +16,7 @@ export default function reducer(state, action) {
         case 'SET_DECREACEMENT':
             return {
                 ...state,
-                count: action.payload
+                description: action.payload
             }
         default:
             return state;   
