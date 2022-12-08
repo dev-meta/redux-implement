@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import {createStore, combineReducers} from './redux/index.js';
+        import info from './reducers/info.js'
+        import counter from './reducers/counter.js'
+        const reducer = combineReducers({
+            counter,
+            info,
+        })
+        const initialState = {
+            counter: {
+                count: 0
+            },
+            info: {
+                name: '',
+                description: ''
+            }
+        }
+        const store = createStore(reducer, initialState);
+        store.subscribe(() => {
+            const state = store.getState();
+            console.log('count', state.counter.count);
+            console.log('name', state.info.name);
+        })
+        store.dispatch({
+            type: 'INCREACEMENT'
+        })
+        store.dispatch({
+            type: 'SET_NAME',
+            payload: '加油'
+        })
+    </script>
+</body>
+</html>
